@@ -1,14 +1,17 @@
 module.exports = {
     env: {
       browser: true,
-      es6: true,
-      jest: true,
+      es2021: true,
+      node: true,
     },
+    root: true,
     extends: [
-      'plugin:@typescript-eslint/recommended',
-      'plugin:prettier/recommended',
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended",
+      "prettier"
     ],
-    ignorePatterns: ['.eslintrc.js'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
       ecmaFeatures: {
@@ -16,6 +19,7 @@ module.exports = {
       },
       ecmaVersion: 12,
       sourceType: 'module',
+      project: ['./tsconfig.json']
     },
     plugins: ['react', '@typescript-eslint'],
     rules: {
