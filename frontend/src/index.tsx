@@ -1,8 +1,11 @@
-import React from 'react'
-import ReactDom from 'react-dom'
+import React from 'react';
+import ReactDom from 'react-dom';
+import { App } from './App';
+import { ChakraProvider } from '@chakra-ui/react';
 
-const App = () => {
-  return <div>hello world</div>
-}
-
-ReactDom.render(<App></App>, document.getElementById('root'))
+ReactDom.render(
+  <ChakraProvider>
+    <App></App>
+  </ChakraProvider>,
+  document.getElementById('root')
+);
