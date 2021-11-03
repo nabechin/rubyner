@@ -4,7 +4,7 @@ class Task < ApplicationRecord
     end
 
     def create(name)
-        Task.create(name)
+        Task.create(name: name)
     end
 
     def update(id, name)
