@@ -40,8 +40,14 @@ export const App: FC = () => {
     values: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
-    await client.post('tasks', values);
+    const res = await client.post('tasks', values);
+    setTasks([...tasks, res.data.task]);
     setSubmitting(false);
+  };
+
+  const onHandleDelete = async (id: string) => {
+    const res = await client.delete(`tasks/${id}`);
+    setTasks(tasks.filter((v) => v.id !== res.data.task.id));
   };
 
   return (
@@ -67,8 +73,8 @@ export const App: FC = () => {
           </Formik>
         </Flex>
         <Flex direction="column">
-          {tasks.map((t) => (
-            <Flex align="center" mb={2} key={t.name}>
+          {tasks.map((t, idx) => (
+            <Flex align="center" mb={2} key={idx}>
               <Box
                 borderBottom="1px solid grey"
                 minWidth="100px"
@@ -77,7 +83,9 @@ export const App: FC = () => {
               >
                 {t.name}
               </Box>
-              <DeleteIcon></DeleteIcon>
+              <DeleteIcon
+                onClick={async () => await onHandleDelete(t.id)}
+              ></DeleteIcon>
             </Flex>
           ))}
         </Flex>

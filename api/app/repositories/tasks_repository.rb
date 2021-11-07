@@ -8,12 +8,13 @@ class TasksRepository
     end
 
     def create(name)
-        Task.create(name: name)
+        return Task.create(name: name)
     end
 
     def destroy(id)
         task = Task.find_by(id: id)
         task.destroy
+        return task
     end
 
     def update(id, name)

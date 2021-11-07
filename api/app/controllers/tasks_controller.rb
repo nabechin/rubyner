@@ -8,14 +8,14 @@ class TasksController < ApplicationController
 
     def create
         tasks_repository = TasksRepository.new
-        tasks_repository.create(params[:name])
-        render json: {status: "Create Success"}
+        task = tasks_repository.create(params[:name])
+        render json: {status: "Create Success", task: task}
     end
 
     def destroy
         tasks_repository = TasksRepository.new
-        tasks_repository.destroy(params[:id])
-        render json: { status: "Delete Success" }
+        task = tasks_repository.destroy(params[:id])
+        render json: { status: "Delete Success", task: task }
     end
 
     def update
