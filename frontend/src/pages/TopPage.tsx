@@ -12,6 +12,9 @@ import {
 import { Formik, Form, Field, FormikHelpers, FieldProps } from 'formik';
 import { DeleteIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+interface Values {
+  name: string;
+}
 
 export const TopPage: FC = () => {
   const client = axios.create({

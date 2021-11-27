@@ -14,10 +14,6 @@ const Layout: FC<LayoutProps> = (props) => {
   );
 };
 
-interface Values {
-  name: string;
-}
-
 export const App: FC = () => {
   return (
     <>
