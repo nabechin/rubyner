@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Inbox } from './pages/Inbox';
+import { Inbox } from '~/pages/Inbox';
 import { Flex, List, ListItem, Box } from '@chakra-ui/react';
 
 type LayoutProps = {

@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Formik, Form, Field, FormikHelpers, FieldProps } from 'formik';
 import { DeleteIcon } from '@chakra-ui/icons';
-import { getTasks, createTask, deleteTask, Task } from '../domain/task';
+import { getTasks, createTask, deleteTask, Task } from '~/domain/task';
 interface Values {
   name: string;
 }

@@ -1,4 +1,4 @@
-import { apiClient } from '../lib/axios';
+import { apiClient } from '~/lib/axios';
 
 export type Task = {
   id: string;

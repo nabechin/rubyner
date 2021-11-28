@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Container, Flex, Box, Stack, Radio, Divider } from '@chakra-ui/react';
 import { ArrowUpDownIcon, AddIcon } from '@chakra-ui/icons';
-import { getTasks, Task } from '../domain/task';
+import { getTasks, Task } from '~/domain/task';
 
 export const Inbox: FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

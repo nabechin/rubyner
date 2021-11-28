@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "es2019",
     "module": "esnext",
     "strict": true,
     "jsx": "react",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": true
+    "baseUrl": "./src",
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
+  "include": ["**/*.tsx", "**/*.ts"],
+  "exclude": ["node_modules"]
 }

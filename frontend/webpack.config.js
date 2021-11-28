@@ -10,6 +10,9 @@ module.exports = {
   resolve: {
     modules: ['node_modules'],
     extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '~': path.join(__dirname, 'src'),
+    },
   },
   devtool: 'inline-source-map',
   output: {
