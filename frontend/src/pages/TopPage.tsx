@@ -11,42 +11,33 @@ import {
 } from '@chakra-ui/react';
 import { Formik, Form, Field, FormikHelpers, FieldProps } from 'formik';
 import { DeleteIcon } from '@chakra-ui/icons';
-import axios from 'axios';
+import { getTasks, createTask, deleteTask, Task } from '../domain/task';
 interface Values {
   name: string;
 }
 
 export const TopPage: FC = () => {
-  const client = axios.create({
-    baseURL: 'http://localhost:4000',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    timeout: 3000,
-  });
-  type Tasks = {
-    id: string;
-    name: string;
-  };
-  const [tasks, setTasks] = useState<Tasks[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   useEffect(() => {
-    client.get('tasks').then((res) => {
-      setTasks(res.data.tasks);
-    });
+    const get = async () => {
+      const tasks = await getTasks();
+      setTasks(tasks);
+    };
+    get();
   }, []);
 
   const onHandleSubmit = async (
     values: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
-    const res = await client.post('tasks', values);
-    setTasks([...tasks, res.data.task]);
+    const task = await createTask(values);
+    setTasks([...tasks, task]);
     setSubmitting(false);
   };
 
   const onHandleDelete = async (id: string) => {
-    const res = await client.delete(`tasks/${id}`);
-    setTasks(tasks.filter((v) => v.id !== res.data.task.id));
+    const task = await deleteTask(id);
+    setTasks(tasks.filter((v) => v.id !== task.id));
   };
 
   return (
