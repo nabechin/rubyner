@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { TopPage } from './pages/TopPage';
-import { Flex, List, ListItem } from '@chakra-ui/react';
+import { Inbox } from './pages/Inbox';
+import { Flex, List, ListItem, Box } from '@chakra-ui/react';
 
 type LayoutProps = {
   component: React.ComponentType;
@@ -9,7 +9,7 @@ type LayoutProps = {
 const MenuBar: FC = () => {
   const menuList = [{ name: 'インボックス' }];
   return (
-    <List width="280px" height="100vh" background="#f7f7f7" pt="16px">
+    <List>
       {menuList.map((menu) => (
         <ListItem
           _hover={{ backgroundColor: '#ededed' }}
@@ -30,7 +30,9 @@ const Layout: FC<LayoutProps> = (props) => {
   return (
     <>
       <Flex>
-        <MenuBar />
+        <Box pt="8" width="280px" height="100vh" background="#f7f7f7">
+          <MenuBar />
+        </Box>
         <Component />
       </Flex>
     </>
@@ -40,7 +42,7 @@ const Layout: FC<LayoutProps> = (props) => {
 export const App: FC = () => {
   return (
     <>
-      <Layout component={TopPage}></Layout>
+      <Layout component={Inbox}></Layout>
     </>
   );
 };
