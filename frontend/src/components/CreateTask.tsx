@@ -14,7 +14,7 @@ export const CreateTask: FC = () => {
     <>
       {openTaskCreateForm ? (
         <Form<Omit<Task, 'id'>> onSubmit={onHandleSubmit}>
-          {(register) => (
+          {({ register }) => (
             <>
               <Box border="solid gray" borderWidth="thin" borderRadius="md">
                 <Box p={2}>

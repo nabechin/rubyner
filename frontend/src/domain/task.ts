@@ -3,6 +3,7 @@ import { apiClient } from '~/lib/axios';
 export type Task = {
   id: string;
   name: string;
+  description: string;
 };
 
 export const getTasks = async (): Promise<Task[]> => {

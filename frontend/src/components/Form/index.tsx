@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 type FormProps<TFieldValues> = {
   defaultValues?: TFieldValues;
   onSubmit: SubmitHandler<TFieldValues>;
   id?: string;
-  children: (props: any) => React.ReactNode;
+  children: (formReturns: UseFormReturn<TFieldValues>) => React.ReactNode;
 };
 
-const Form = <TFieldValues extends Record<string, unknown> = {}>(
+const Form = <
+  TFieldValues extends Record<string, unknown> = Record<string, unknown>
+>(
   props: FormProps<TFieldValues>
 ) => {
   const { defaultValues, onSubmit, id, children } = props;
