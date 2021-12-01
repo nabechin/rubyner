@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 type FormProps<TFieldValues> = {

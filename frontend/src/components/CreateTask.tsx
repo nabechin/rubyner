@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Box, Stack, Textarea, Button } from '@chakra-ui/react';
+import { Box, Stack, Button } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import Form from '~/components/Form';
 import { Task } from '~/domain/task';
@@ -13,8 +13,8 @@ export const CreateTask: FC = () => {
   return (
     <>
       {openTaskCreateForm ? (
-        <Form<Omit<Task, 'id'>> onSubmit={onHandleSubmit}>
-          {({ register }) => (
+        <Form<Omit<Task, 'id'>> onSubmit={onHandleSubmit} id="task-create">
+          {({ register, formState }) => (
             <>
               <Box border="solid gray" borderWidth="thin" borderRadius="md">
                 <Box p={2}>
@@ -35,7 +35,13 @@ export const CreateTask: FC = () => {
                 </Box>
               </Box>
               <Stack direction="row" pt={2}>
-                <Button size="md" colorScheme="blue" type="submit">
+                <Button
+                  size="md"
+                  colorScheme="blue"
+                  type="submit"
+                  isLoading={formState.isSubmitting}
+                  id="task-create"
+                >
                   タスクを追加
                 </Button>
                 <Button
