@@ -8,8 +8,8 @@ class TasksApplication
         return @tasks_repository.index
     end
 
-    def create(name)
-        @tasks_repository.create(name)
+    def create(name, description)
+        @tasks_repository.create(name, description)
     end
 
     def destroy(id)

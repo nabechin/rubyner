@@ -8,7 +8,7 @@ class TasksController < ApplicationController
 
     def create
         tasks_application = TasksApplication.new(TasksRepository.new())
-        task = tasks_application.create(params[:name])
+        task = tasks_application.create(params[:name], params[:description])
         render json: {status: "Create Success", task: task}
     end
 

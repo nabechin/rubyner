@@ -7,8 +7,8 @@ class TasksRepository
         return Task.all
     end
 
-    def create(name)
-        return Task.create(name: name)
+    def create(name, description)
+        return Task.create(name: name, description: description)
     end
 
     def destroy(id)

@@ -1,8 +1,13 @@
 import React from 'react';
-import { useForm, SubmitHandler, UseFormReturn } from 'react-hook-form';
+import {
+  useForm,
+  SubmitHandler,
+  UseFormReturn,
+  UseFormProps,
+} from 'react-hook-form';
 
 type FormProps<TFieldValues> = {
-  defaultValues?: TFieldValues;
+  options?: UseFormProps<TFieldValues>;
   onSubmit: SubmitHandler<TFieldValues>;
   id?: string;
   children: (formReturns: UseFormReturn<TFieldValues>) => React.ReactNode;
@@ -13,8 +18,8 @@ const Form = <
 >(
   props: FormProps<TFieldValues>
 ) => {
-  const { defaultValues, onSubmit, id, children } = props;
-  const formReturns = useForm<TFieldValues>(defaultValues);
+  const { options, onSubmit, id, children } = props;
+  const formReturns = useForm<TFieldValues>(options);
   return (
     <form id={id} onSubmit={formReturns.handleSubmit(onSubmit)}>
       {children(formReturns)}
