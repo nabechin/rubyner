@@ -1,17 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Container, Box } from '@chakra-ui/react';
-import { getTasks, Task } from '~/domain/task';
 import { TaskList } from '~/components/TaskList';
 import { Header } from '~/components/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '~/store/index';
+import { loadAll } from '~/store/action/task';
 
 export const Inbox: FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const dispatch = useDispatch();
+  const tasks = useSelector((state: RootState) => state.task.tasks);
   useEffect(() => {
-    const get = async () => {
-      const tasks = await getTasks();
-      setTasks(tasks);
-    };
-    get();
+    dispatch(loadAll());
   }, []);
   return (
     <Container maxW="container.md" mt="8">

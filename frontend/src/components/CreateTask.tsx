@@ -2,13 +2,16 @@ import React, { FC, useState } from 'react';
 import { Box, Stack, Button } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import Form from '~/components/Form';
-import { Task, createTask } from '~/domain/task';
+import { Task } from '~/domain/task';
+import { create } from '~/store/action/task';
 import { TextAreaField } from '~/components/Form/TextAreaField';
+import { useDispatch } from 'react-redux';
 
 export const CreateTask: FC = () => {
   const [openTaskCreateForm, setOpenTaskCreateForm] = useState<boolean>(false);
-  const onHandleSubmit = async (values: Omit<Task, 'id'>) => {
-    await createTask(values);
+  const diapatch = useDispatch();
+  const onHandleSubmit = (values: Omit<Task, 'id'>) => {
+    diapatch(create(values));
   };
   return (
     <>
