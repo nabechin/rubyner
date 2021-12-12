@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { Box, Stack, Radio, Divider, Button } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import { TaskForm } from '~/components/CreateTask';
+import { TaskForm } from '~/components/TaskForm';
 import { Task } from '~/domain/task';
 
 type TaskListProps = {
@@ -12,7 +12,7 @@ type TaskListProps = {
 
 const TaskList: FC<TaskListProps> = (props) => {
   const { tasks, openTaskDetail } = props;
-  const [openTaskCreateForm, setOpenTaskCreateForm] = useState<boolean>(false);
+  const [openTaskForm, setOpenTaskForm] = useState<boolean>(false);
 
   return (
     <Box>
@@ -26,9 +26,9 @@ const TaskList: FC<TaskListProps> = (props) => {
             <Divider />
           </>
         ))}
-        {openTaskCreateForm ? (
+        {openTaskForm ? (
           <TaskForm
-            footerButton={(formState) => (
+            renderFooter={(formState) => (
               <Stack direction="row" pt={2}>
                 <Button
                   size="md"
@@ -44,7 +44,7 @@ const TaskList: FC<TaskListProps> = (props) => {
                   size="md"
                   colorScheme="gray"
                   variant="outline"
-                  onClick={() => setOpenTaskCreateForm(false)}
+                  onClick={() => setOpenTaskForm(false)}
                 >
                   キャンセル
                 </Button>
@@ -55,7 +55,7 @@ const TaskList: FC<TaskListProps> = (props) => {
           <Stack
             direction="row"
             alignItems="center"
-            onClick={() => setOpenTaskCreateForm(true)}
+            onClick={() => setOpenTaskForm(true)}
           >
             <AddIcon />
             <Box>タスクを追加</Box>

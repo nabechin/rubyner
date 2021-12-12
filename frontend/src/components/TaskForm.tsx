@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { FormState } from 'react-hook-form';
 
 type Props = {
-  footerButton?: (formState: FormState<Omit<Task, 'id'>>) => React.ReactNode;
+  renderFooter?: (formState: FormState<Omit<Task, 'id'>>) => React.ReactNode;
   defaultValues?: Record<string, unknown>;
 };
 
@@ -17,7 +17,7 @@ export const TaskForm: FC<Props> = (props) => {
   const onHandleSubmit = (values: Omit<Task, 'id'>) => {
     diapatch(create(values));
   };
-  const { footerButton, defaultValues } = props;
+  const { renderFooter, defaultValues } = props;
   return (
     <Form<Omit<Task, 'id'>>
       onSubmit={onHandleSubmit}
@@ -45,7 +45,7 @@ export const TaskForm: FC<Props> = (props) => {
                 ></TextAreaField>
               </Box>
             </Box>
-            {footerButton && footerButton(formState)}
+            {renderFooter && renderFooter(formState)}
           </>
         );
       }}
