@@ -6,16 +6,17 @@ import { Task } from '~/domain/task';
 
 type TaskListProps = {
   tasks: Task[];
+  openTaskDetail: (task: Task) => void;
 };
 
-export const TaskList: FC<TaskListProps> = (props) => {
-  const { tasks } = props;
+const TaskList: FC<TaskListProps> = (props) => {
+  const { tasks, openTaskDetail } = props;
   return (
     <Box>
       <Stack _hover={{ cursor: 'pointer' }}>
         {tasks.map((task) => (
           <>
-            <Stack direction="row">
+            <Stack direction="row" onClick={() => openTaskDetail(task)}>
               <Radio />
               <Box>{task.name}</Box>
             </Stack>
@@ -27,3 +28,5 @@ export const TaskList: FC<TaskListProps> = (props) => {
     </Box>
   );
 };
+
+export default React.memo(TaskList);
