@@ -17,9 +17,11 @@ class TasksRepository
         return task
     end
 
-    def update(id, name)
+    def update(id, name, description)
         task = Task.find_by(id: id)
         task.name = name
+        task.description = description
         task.save
+        return task
     end
 end

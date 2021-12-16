@@ -2,22 +2,21 @@ import React, { FC } from 'react';
 import { Box } from '@chakra-ui/react';
 import Form from '~/components/Form';
 import { Task } from '~/domain/task';
-import { create } from '~/store/action/task';
 import { TextAreaField } from '~/components/Form/TextAreaField';
-import { useDispatch } from 'react-redux';
 import { FormState } from 'react-hook-form';
 
 type Props = {
   renderFooter?: (formState: FormState<Omit<Task, 'id'>>) => React.ReactNode;
+  onSubmit: (value: Omit<Task, 'id'>) => void;
   defaultValues?: Record<string, unknown>;
 };
 
 export const TaskForm: FC<Props> = (props) => {
-  const diapatch = useDispatch();
+  const { renderFooter, defaultValues, onSubmit } = props;
+
   const onHandleSubmit = (values: Omit<Task, 'id'>) => {
-    diapatch(create(values));
+    onSubmit(values);
   };
-  const { renderFooter, defaultValues } = props;
   return (
     <Form<Omit<Task, 'id'>>
       onSubmit={onHandleSubmit}

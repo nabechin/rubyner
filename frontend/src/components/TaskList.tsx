@@ -4,6 +4,8 @@ import { Box, Stack, Radio, Divider, Button } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { TaskForm } from '~/components/TaskForm';
 import { Task } from '~/domain/task';
+import { useDispatch } from 'react-redux';
+import { create } from '~/store/action/task';
 
 type TaskListProps = {
   tasks: Task[];
@@ -13,6 +15,10 @@ type TaskListProps = {
 const TaskList: FC<TaskListProps> = (props) => {
   const { tasks, openTaskDetail } = props;
   const [openTaskForm, setOpenTaskForm] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const onHandleTaskCreate = (values: Omit<Task, 'id'>) => {
+    dispatch(create(values));
+  };
 
   return (
     <Box>
@@ -28,6 +34,7 @@ const TaskList: FC<TaskListProps> = (props) => {
         ))}
         {openTaskForm ? (
           <TaskForm
+            onSubmit={(task) => onHandleTaskCreate(task)}
             renderFooter={(formState) => (
               <Stack direction="row" pt={2}>
                 <Button

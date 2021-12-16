@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 
     def update
         tasks_application = TasksApplication.new(TasksRepository.new())
-        tasks_application.update(params[:id], params[:name])
-        render json: { status: "Update Successs" }
+        task = tasks_application.update(params[:id], params[:name], params[:description])
+        render json: { status: "Update Successs", task: task }
     end
 end

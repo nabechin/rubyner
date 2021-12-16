@@ -9,14 +9,14 @@ class TasksApplication
     end
 
     def create(name, description)
-        @tasks_repository.create(name, description)
+        return @tasks_repository.create(name, description)
     end
 
     def destroy(id)
         @tasks_repository.destroy(id)
     end
 
-    def update(id, name)
-        @tasks_repository.update(id, name)
+    def update(id, name, description)
+        return @tasks_repository.update(id, name, description)
     end
 end
