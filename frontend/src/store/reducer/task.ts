@@ -14,7 +14,7 @@ export const TaskReducer = (
 ) => {
   switch (action.type) {
     case 'GET':
-      return { ...state, tasks: [...state.tasks, ...action.payload] };
+      return { ...state, tasks: action.payload };
     case 'CREATE':
       return { ...state, tasks: [...state.tasks, ...[action.payload]] };
     case 'PUT':

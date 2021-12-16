@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { Box, Stack, Radio, Divider, Button } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import { TaskForm } from '~/components/TaskForm';
+import { TaskForm } from '~/components/Form/TaskForm';
 import { Task } from '~/domain/task';
 import { useDispatch } from 'react-redux';
 import { create } from '~/store/action/task';
@@ -25,11 +25,16 @@ const TaskList: FC<TaskListProps> = (props) => {
       <Stack _hover={{ cursor: 'pointer' }}>
         {tasks.map((task) => (
           <>
-            <Stack direction="row" onClick={() => openTaskDetail(task)}>
+            <Stack
+              direction="row"
+              onClick={() => openTaskDetail(task)}
+              borderBottom="1px"
+              borderColor="gray.100"
+              lineHeight="2.3rem"
+            >
               <Radio />
               <Box>{task.name}</Box>
             </Stack>
-            <Divider />
           </>
         ))}
         {openTaskForm ? (

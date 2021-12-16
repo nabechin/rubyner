@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 
-import { TaskForm } from '~/components/TaskForm';
+import { TaskForm } from '~/components/Form/TaskForm';
 import { Task } from '~/domain/task';
 
 type Props = {
@@ -82,7 +82,11 @@ export const TaskDetailDialog: FC<Props> = (props) => {
               <Box>
                 <Radio size="lg" marginTop="5px"></Radio>
               </Box>
-              <Box marginLeft="10px" onClick={() => setOpenTaskForm(true)}>
+              <Box
+                marginLeft="10px"
+                onClick={() => setOpenTaskForm(true)}
+                width="100%"
+              >
                 <Box marginLeft="10px" fontWeight="bold" fontSize="lg">
                   {task.name}
                 </Box>

@@ -1,13 +1,20 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Inbox } from '~/pages/Inbox';
 import { Flex, List, ListItem, Box } from '@chakra-ui/react';
+import { useActions, useAppState } from './components/App';
 
-type LayoutProps = {
-  component: React.ComponentType;
+type Page = 'inbox' | 'null';
+type Menu = {
+  type: Page;
+  name: string;
 };
 
 const MenuBar: FC = () => {
-  const menuList = [{ name: 'インボックス' }];
+  const actions = useActions();
+  const menuList: Menu[] = [
+    { type: 'inbox', name: 'インボックス' },
+    { type: 'null', name: 'null' },
+  ];
   return (
     <List>
       {menuList.map((menu) => (
@@ -17,6 +24,7 @@ const MenuBar: FC = () => {
           marginLeft="auto"
           p="10px"
           rounded="md"
+          onClick={() => actions.goTo(menu.type)}
         >
           {menu.name}
         </ListItem>
@@ -25,24 +33,44 @@ const MenuBar: FC = () => {
   );
 };
 
+type LayoutProps = {
+  page: Page;
+};
+
 const Layout: FC<LayoutProps> = (props) => {
-  const { component: Component } = props;
+  const { page } = props;
   return (
     <>
       <Flex>
         <Box pt="8" width="280px" height="100vh" background="#f7f7f7">
           <MenuBar />
         </Box>
-        <Component />
+        <AppContent page={page} />
       </Flex>
     </>
   );
 };
 
+type AppContentProps = {
+  page: Page;
+};
+
+const AppContent: FC<AppContentProps> = (props) => {
+  switch (props.page) {
+    case 'inbox': {
+      return <Inbox />;
+    }
+    case 'null': {
+      return <div>null</div>;
+    }
+  }
+};
+
 export const App: FC = () => {
+  const { page, AppProvider } = useAppState();
   return (
-    <>
-      <Layout component={Inbox}></Layout>
-    </>
+    <AppProvider>
+      <Layout page={page}></Layout>
+    </AppProvider>
   );
 };

@@ -22,7 +22,7 @@ export const Inbox: FC = () => {
     setTask(task);
     open();
   };
-
+  console.log(tasks);
   const onHandleTaskPut = (param: Task) => {
     dispatch(putTask(param));
     setTask(param);

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { others, Textarea, TextareaProps } from '@chakra-ui/react';
+import { Textarea, TextareaProps } from '@chakra-ui/react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 type Props = TextareaProps & {
