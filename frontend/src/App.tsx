@@ -11,10 +11,7 @@ type Menu = {
 
 const MenuBar: FC = () => {
   const actions = useActions();
-  const menuList: Menu[] = [
-    { type: 'inbox', name: 'インボックス' },
-    { type: 'null', name: 'null' },
-  ];
+  const menuList: Menu[] = [{ type: 'inbox', name: 'インボックス' }];
   return (
     <List>
       {menuList.map((menu) => (
@@ -60,8 +57,8 @@ const AppContent: FC<AppContentProps> = (props) => {
     case 'inbox': {
       return <Inbox />;
     }
-    case 'null': {
-      return <div>null</div>;
+    default: {
+      return null;
     }
   }
 };

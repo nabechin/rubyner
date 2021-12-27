@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box } from '@chakra-ui/react';
-import Form from '~/components/Form';
+import { Form } from '~/components/Form/Form';
 import { Task } from '~/domain/task';
 import { TextAreaField } from '~/components/Form/TextAreaField';
 import { FormState } from 'react-hook-form';

@@ -13,7 +13,7 @@ type FormProps<TFieldValues> = {
   children: (formReturns: UseFormReturn<TFieldValues>) => React.ReactNode;
 };
 
-const Form = <
+export const Form = <
   TFieldValues extends Record<string, unknown> = Record<string, unknown>
 >(
   props: FormProps<TFieldValues>
@@ -26,5 +26,3 @@ const Form = <
     </form>
   );
 };
-
-export default Form;
